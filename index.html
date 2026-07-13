@@ -13,8 +13,26 @@
 
         /* SITE HEADER */
         header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
-        .logo-area { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px; color: #ffffff; }
+        .logo-area { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px; color: #ffffff; display: flex; align-items: center; gap: 1rem; }
         .logo-area span { color: #4a90e2; }
+        
+        /* UPDATED BUTTON STYLE */
+        .btn-silent { 
+            background-color: #1a1c22; 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            padding: 0.5rem 1rem; 
+            border-radius: 6px; 
+            font-weight: 500; 
+            border: 1px solid #33363e;
+            transition: background 0.2s, border-color 0.2s; 
+        }
+        .btn-silent:hover { 
+            background-color: #252830; 
+            border-color: #4a4e58;
+        }
+        
         .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         .nav-links a { color: #b0b3b8; text-decoration: none; transition: color 0.2s ease; }
         .nav-links a:hover { color: #ffffff; }
@@ -64,7 +82,10 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo-area">MCTIFY <span>COMMUNITY LIST</span></div>
+            <div class="logo-area">
+                MCTIFY <span>COMMUNITY LIST</span>
+                <a href="https://mctify.github.io/Mctify-Silent-List-GD/" class="btn-silent">View Silent List</a>
+            </div>
             <ul class="nav-links">
                 <li><a href="https://discord.gg/ABn3XnUhyH" target="_blank">Discord Server</a></li>
             </ul>
