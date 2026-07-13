@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mctify Community List — Geometry Dash</title>
-    <!-- Placeholder tab logo (swap the href link later when your new logo is ready!) -->
+    <title>Mctify Community List</title>
+    
     
     <style>
         /* GLOBAL STYLES */
@@ -16,9 +16,10 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #fcfcfc;
-            color: #111111;
+            background-color: #0c0d10; 
+            color: #ffffff; 
             line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -32,85 +33,94 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid #e5e5e5;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15); 
         }
 
         .logo-area {
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: 0.5px;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2); 
         }
 
         .logo-area span {
             color: #4a90e2;
+            text-shadow: 0 0 10px rgba(74, 144, 226, 0.4);
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .nav-links a {
-            color: #555;
+            color: #b0b3b8;
             text-decoration: none;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, text-shadow 0.2s;
         }
 
         .nav-links a:hover {
-            color: #4a90e2;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
 
         /* SEARCH BAR SYSTEM */
         .search-container {
-            margin: 2rem 0 1rem 0;
+            margin: 2.5rem 0 1.5rem 0;
             width: 100%;
         }
 
         .search-input {
             width: 100%;
-            padding: 0.8rem 1rem;
+            padding: 1rem 1.2rem;
             font-size: 1rem;
-            border: 1px solid #e5e5e5;
-            border-radius: 4px;
-            background-color: #ffffff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 24px; 
+            background-color: #16181d;
             outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
+            color: #ffffff;
+        }
+
+        .search-input::placeholder {
+            color: #666666;
         }
 
         .search-input:focus {
-            border-color: #4a90e2;
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+            border-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
         }
 
         /* THREE-TAB NAVIGATION */
         .list-tabs {
             display: flex;
-            border: 1px solid #e5e5e5;
-            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 24px; 
             margin-bottom: 2rem;
-            background-color: #ffffff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            background-color: #16181d;
             overflow: hidden;
         }
 
         .tab {
             flex: 1;
             text-align: center;
-            padding: 1rem;
+            padding: 1.2rem;
             text-decoration: none;
-            color: #555;
-            font-weight: 600;
-            font-size: 1rem;
+            color: #a0a5b0;
+            font-weight: 700;
+            font-size: 1.05rem;
             cursor: pointer;
-            background-color: #ffffff;
-            border-bottom: 2px solid transparent;
-            border-right: 1px solid #e5e5e5;
+            background-color: #16181d;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 3px solid transparent;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         }
 
         .tab:last-child {
@@ -118,16 +128,18 @@
         }
 
         .tab.active {
-            color: #111111;
-            background-color: #fafafa;
-            border-bottom: 2px solid #333333;
+            color: #ffffff;
+            background-color: #1e2127;
+            border-bottom: 3px solid #ffffff; 
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
         }
 
         .tab:hover:not(.active) {
-            background-color: #f9f9f9;
+            background-color: #1e2127;
+            color: #ffffff;
         }
 
-        /* LEVEL LIST CONTAINER */
+        /* LEVEL LIST CONTAINER WITH TAB CHANGE ANIMATION */
         .level-list {
             display: flex;
             flex-direction: column;
@@ -135,99 +147,136 @@
             margin-bottom: 4rem;
         }
 
-        /* HIDES INACTIVE TABS CORRECTLY ON LOAD */
+        .tab-animate {
+            animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .hidden {
             display: none !important;
         }
 
-        /* CLICKABLE DROPDOWN CARD WRAPPER */
-        details.level-card-wrapper {
-            background: #ffffff;
-            border: 1px solid #e8e8e8;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        /* ACCORDION CARD WRAPPER */
+        .level-card-wrapper {
+            background: #16181d;
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 24px; 
             overflow: hidden;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s;
         }
 
-        details.level-card-wrapper[open] {
-            border-color: #cccccc;
+        .level-card-wrapper:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /* THE VISIBLE LEVEL CARD (CLICKABLE HEADER) */
-        summary.level-card-summary {
+        /* THEME BACKGROUNDS (Card Backgrounds) */
+        .banana-card-theme .summary-header {
+            position: relative;
+            background-image: linear-gradient(to right, rgba(22, 24, 29, 0.95) 40%, rgba(22, 24, 29, 0.6) 100%), 
+                              url('https://res.cloudinary.com/ddows9h3k/image/upload/v1783916158/Screenshot_2026-07-13_111249_t8nqxe.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .shadowy-card-theme .summary-header {
+            position: relative;
+            background-image: linear-gradient(to right, rgba(22, 24, 29, 0.95) 40%, rgba(22, 24, 29, 0.6) 100%), 
+                              url('https://res.cloudinary.com/ddows9h3k/image/upload/v1783917195/Screenshot_2026-07-13_113223_iuj1ij.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .xcct-card-theme .summary-header {
+            position: relative;
+            background-image: linear-gradient(to right, rgba(22, 24, 29, 0.95) 40%, rgba(22, 24, 29, 0.6) 100%), 
+                              url('https://res.cloudinary.com/ddows9h3k/image/upload/v1783917510/Screenshot_2026-07-13_113803_uf6nze.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .sine-card-theme .summary-header {
+            position: relative;
+            background-image: linear-gradient(to right, rgba(22, 24, 29, 0.95) 40%, rgba(22, 24, 29, 0.6) 100%), 
+                              url('https://res.cloudinary.com/ddows9h3k/image/upload/v1783918117/Screenshot_2026-07-13_114802_wp7ljx.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* THE VISIBLE LEVEL CARD HEADER */
+        .summary-header {
             display: flex;
+            align-items: center;
             cursor: pointer;
-            list-style: none;
             user-select: none;
+            width: 100%;
         }
 
-        summary.level-card-summary::-webkit-details-marker {
-            display: none;
-        }
-
+        /* LEVEL THUMBNAIL PREVIEWS */
         .level-thumb {
             width: 220px;
             height: 125px;
-            background-color: #1a1a1a;
             object-fit: cover;
             flex-shrink: 0;
-            border-right: 1px solid #e8e8e8;
-        }
-
-        /* Placeholder style if no image link is available yet */
-        .level-thumb-placeholder {
-            width: 220px;
-            height: 125px;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #475569;
-            font-weight: bold;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-            border-right: 1px solid #e8e8e8;
+            border-right: 1px solid rgba(255, 255, 255, 0.15); 
         }
 
         .level-info {
-            padding: 1.2rem;
+            padding: 1.5rem;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
             flex-grow: 1;
             position: relative;
         }
 
-        .level-info::after {
-            content: '▼';
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-            font-size: 0.8rem;
-            transition: transform 0.2s;
-        }
-
-        details[open] summary .level-info::after {
-            transform: translateY(-50%) rotate(180deg);
+        .level-main-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
         }
 
         .level-title {
             font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 0.2rem;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); 
         }
 
         .level-publisher {
             font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 0.6rem;
+            color: #eeeeee;
         }
 
         .level-publisher strong {
-            color: #111;
+            color: #ffffff;
             text-decoration: underline;
+        }
+
+        .dropdown-arrow {
+            color: #ffffff;
+            font-size: 0.8rem;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            margin-right: 0.5rem;
+        }
+
+        .level-card-wrapper.is-open .dropdown-arrow {
+            transform: rotate(180deg);
         }
 
         /* TAG SYSTEMS FOR GD STATUSES */
@@ -235,6 +284,7 @@
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
+            margin-top: 0.4rem;
         }
 
         .tag {
@@ -246,28 +296,26 @@
             letter-spacing: 0.3px;
         }
 
-        .tag-no-showcase { background-color: #fee2e2; color: #ef4444; border: 1px solid #fca5a5; }
-        .tag-unfinished { background-color: #fef3c7; color: #d97706; border: 1px solid #fcd34d; }
-        .tag-unverified { background-color: #f3e8ff; color: #7c3aed; border: 1px solid #d8b4fe; }
-        .tag-impossible { background-color: #ffedd5; color: #ea580c; border: 1px solid #fed7aa; }
+        .tag-impossible { background-color: rgba(234, 88, 12, 0.2); color: #ea580c; border: 1px solid #ea580c; }
 
-        /* DROPDOWN ANIMATION SYSTEM */
+        /* SPAMMABLE SLIDE SYSTEM */
         .level-expanded-content {
-            padding: 0;
-            max-height: 0;
+            height: 0;
             overflow: hidden;
-            background-color: #fafafa;
-            border-top: 0 solid #e8e8e8;
-            font-size: 0.95rem;
-            opacity: 0;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.4s ease, border-top-width 0.2s ease;
+            background-color: #111317; 
+            transition: height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        details[open] .level-expanded-content {
+        .expanded-inner-body {
             padding: 1.5rem;
-            max-height: 500px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .level-card-wrapper.is-open .expanded-inner-body {
             opacity: 1;
-            border-top: 1px solid #e8e8e8;
+            transform: translateY(0);
         }
 
         .meta-grid {
@@ -280,7 +328,7 @@
         .meta-box h4 {
             font-size: 0.9rem;
             text-transform: uppercase;
-            color: #666;
+            color: #b0b3b8;
             margin-bottom: 0.3rem;
             letter-spacing: 0.5px;
         }
@@ -288,7 +336,7 @@
         .meta-box p {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #222;
+            color: #ffffff;
         }
 
         .btn-video {
@@ -303,64 +351,73 @@
             font-weight: 600;
             border-radius: 4px;
             margin-top: 0.2rem;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
         }
 
         .btn-video.btn-tiktok {
             background-color: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .btn-video:hover {
             opacity: 0.9;
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-video.btn-tiktok:hover {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         .records-box h4 {
             font-size: 0.9rem;
             text-transform: uppercase;
-            color: #666;
+            color: #b0b3b8;
             margin-bottom: 0.5rem;
             letter-spacing: 0.5px;
         }
 
         .no-records {
-            background: #ffffff;
-            border: 1px dashed #dddddd;
+            background: rgba(22, 24, 29, 0.6);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
             padding: 1rem;
             text-align: center;
-            color: #777;
+            color: #b0b3b8;
             border-radius: 4px;
             font-style: italic;
             font-size: 0.9rem;
         }
 
-        /* EMPTY STATE FOR EMPTY TABS */
         .empty-list-notice {
-            background: #ffffff;
-            border: 1px dashed #cccccc;
+            background: #16181d;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
             padding: 2.5rem 1rem;
             text-align: center;
-            color: #666;
-            border-radius: 4px;
+            color: #888888;
+            border-radius: 24px;
             font-style: italic;
         }
 
-        /* MOBILE OPTIMIZATION */
+        /* MOBILE OVERRIDES */
         @media (max-width: 768px) {
-            summary.level-card-summary {
+            .summary-header {
                 flex-direction: column;
+                align-items: flex-start;
             }
-            .level-thumb, .level-thumb-placeholder {
+            .level-thumb {
                 width: 100%;
                 height: 140px;
                 border-right: none;
-                border-bottom: 1px solid #e8e8e8;
+                border-radius: 24px 24px 0 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             }
             .meta-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
             .level-info {
-                padding-right: 3rem;
+                width: 100%;
+                padding: 1rem;
             }
         }
     </style>
@@ -393,128 +450,140 @@
         <main>
             
             <!-- MAIN LIST CONTENT -->
-            <section id="contentMain" class="level-list">
+            <section id="contentMain" class="level-list tab-animate">
                 
                 <!-- LEVEL #1: BANANA CIRCLES -->
-                <details class="level-card-wrapper" data-name="banana circles" data-creator="nexifygmd">
-                    <summary class="level-card-summary">
-                        <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783865345/Screenshot_2026-07-12-20-49-34-22_94c3c0214f41e8559bec03caf75c21c7_tjknqk.png" alt="Banana Circles Preview">
+                <div class="level-card-wrapper banana-card-theme" data-name="banana circles" data-creator="nexifygmd">
+                    <div class="summary-header" onclick="toggleCard(this)">
+                        <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783865345/Screenshot_2026-07-12-20-49-34-22_94c3c0214f41e8559bec03caf75c21c7_tjknqk.png" alt="Banana Circles Thumbnail">
                         
                         <div class="level-info">
-                            <div class="level-title">#1 — Banana Circles</div>
-                            <div class="level-publisher">by <strong>nexifygmd</strong></div>
-                            <div class="tag-container"></div>
+                            <div class="level-main-meta">
+                                <div class="level-title">#1 — Banana Circles</div>
+                                <div class="level-publisher">by <strong>nexifygmd</strong></div>
+                            </div>
+                            <div class="dropdown-arrow">▼</div>
                         </div>
-                    </summary>
+                    </div>
 
                     <div class="level-expanded-content">
-                        <div class="meta-grid">
-                            <div class="meta-box">
-                                <h4>Level ID</h4>
-                                <p>138436400</p>
+                        <div class="expanded-inner-body">
+                            <div class="meta-grid">
+                                <div class="meta-box">
+                                    <h4>Level ID</h4>
+                                    <p>138436400</p>
+                                </div>
+                                <div class="meta-box">
+                                    <h4>Creators</h4>
+                                    <p>nexifygmd</p>
+                                </div>
+                                <div class="meta-box">
+                                    <h4>Verified By</h4>
+                                    <p>zugur</p>
+                                </div>
                             </div>
-                            <div class="meta-box">
-                                <h4>Creators</h4>
-                                <p>nexifygmd</p>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4>Showcase</h4>
+                                <a href="https://vt.tiktok.com/ZSXFG38DJ/" target="_blank" rel="noopener noreferrer" class="btn-video btn-tiktok">Watch TikTok Showcase</a>
                             </div>
-                            <div class="meta-box">
-                                <h4>Verified By</h4>
-                                <p>zugur</p>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-bottom: 1.5rem;">
-                            <h4 style="font-size: 0.9rem; text-transform: uppercase; color: #666; margin-bottom: 0.3rem; letter-spacing: 0.5px; font-weight: 700;">Showcase</h4>
-                            <a href="https://vt.tiktok.com/ZSXFG38DJ/" target="_blank" rel="noopener noreferrer" class="btn-video btn-tiktok">Watch TikTok Showcase</a>
-                        </div>
 
-                        <div class="records-box">
-                            <h4>Records</h4>
-                            <div class="no-records">
-                                No records submitted yet. Submit your proof in our Discord server!
+                            <div class="records-box">
+                                <h4>Records</h4>
+                                <div class="no-records">
+                                    No records submitted yet. Submit your proof in our Discord server!
+                                </div>
                             </div>
                         </div>
                     </div>
-                </details>
+                </div>
 
                 <!-- LEVEL #2: SHADOWY -->
-                <details class="level-card-wrapper" data-name="shadowy" data-creator="syhptr">
-                    <summary class="level-card-summary">
+                <div class="level-card-wrapper shadowy-card-theme" data-name="shadowy" data-creator="syhptr">
+                    <div class="summary-header" onclick="toggleCard(this)">
                         <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783857978/i.ytimg_lnaopr.png" alt="Shadowy Preview">
                         
                         <div class="level-info">
-                            <div class="level-title">#2 — Shadowy</div>
-                            <div class="level-publisher">by <strong>Syhptr</strong></div>
-                            <div class="tag-container"></div>
+                            <div class="level-main-meta">
+                                <div class="level-title">#2 — Shadowy</div>
+                                <div class="level-publisher">by <strong>Syhptr</strong></div>
+                            </div>
+                            <div class="dropdown-arrow">▼</div>
                         </div>
-                    </summary>
+                    </div>
 
                     <div class="level-expanded-content">
-                        <div class="meta-grid">
-                            <div class="meta-box">
-                                <h4>Level ID</h4>
-                                <p>135731734</p>
+                        <div class="expanded-inner-body">
+                            <div class="meta-grid">
+                                <div class="meta-box">
+                                    <h4>Level ID</h4>
+                                    <p>135731734</p>
+                                </div>
+                                <div class="meta-box">
+                                    <h4>Creators</h4>
+                                    <p>Syhptr</p>
+                                </div>
+                                <div class="meta-box">
+                                    <h4>Showcase</h4>
+                                    <p><a href="https://youtu.be/9w241jnP0oE" target="_blank" rel="noopener noreferrer" class="btn-video">Watch Verification</a></p>
+                                </div>
                             </div>
-                            <div class="meta-box">
-                                <h4>Creators</h4>
-                                <p>Syhptr</p>
-                            </div>
-                            <div class="meta-box">
-                                <h4>Showcase</h4>
-                                <a href="https://youtu.be/9w241jnP0oE" target="_blank" rel="noopener noreferrer" class="btn-video">Watch Verification</a>
-                            </div>
-                        </div>
 
-                        <div class="records-box">
-                            <h4>Records</h4>
-                            <div class="no-records">
-                                No records submitted yet. Submit your proof in our Discord server!
+                            <div class="records-box">
+                                <h4>Records</h4>
+                                <div class="no-records">
+                                    No records submitted yet. Submit your proof in our Discord server!
+                                </div>
                             </div>
                         </div>
                     </div>
-                </details>
+                </div>
 
                 <!-- LEVEL #3: XCCT -->
-                <details class="level-card-wrapper" data-name="xcct" data-creator="nexifygmd">
-                    <summary class="level-card-summary">
-                        <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783904123/Screenshot_2026-07-13-06-42-25-08_73932565f5d18c5d7f2b58eb6d5de17f_weoyfa.png" alt="Xcct Preview">
+                <div class="level-card-wrapper xcct-card-theme" data-name="xcct" data-creator="nexifygmd">
+                    <div class="summary-header" onclick="toggleCard(this)">
+                        <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783904123/Screenshot_2026-07-13-06-42-25-08_73932565f5d18c5d7f2b58eb6d5de17f_weoyfa.png" alt="Xcct Thumbnail">
                         
                         <div class="level-info">
-                            <div class="level-title">#3 — Xcct</div>
-                            <div class="level-publisher">by <strong>nexifygmd</strong></div>
-                            <div class="tag-container"></div>
+                            <div class="level-main-meta">
+                                <div class="level-title">#3 — Xcct</div>
+                                <div class="level-publisher">by <strong>nexifygmd</strong></div>
+                            </div>
+                            <div class="dropdown-arrow">▼</div>
                         </div>
-                    </summary>
+                    </div>
 
                     <div class="level-expanded-content">
-                        <div class="meta-grid">
-                            <div class="meta-box">
-                                <h4>Level ID</h4>
-                                <p>11788443</p>
+                        <div class="expanded-inner-body">
+                            <div class="meta-grid">
+                                <div class="meta-box">
+                                    <h4>Level ID</h4>
+                                    <p>117884435</p>
+                                </div>
+                                <div class="meta-box">
+                                    <h4>Creators</h4>
+                                    <p>nexifygmd</p>
+                                </div>
+                                <div class="meta-box">
+                                    <h4>Verified By</h4>
+                                    <p>nexifygmd</p>
+                                </div>
                             </div>
-                            <div class="meta-box">
-                                <h4>Creators</h4>
-                                <p>nexifygmd</p>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4>Showcase</h4>
+                                <a href="https://vt.tiktok.com/ZSXY4EgWp/" target="_blank" rel="noopener noreferrer" class="btn-video btn-tiktok">Watch TikTok Showcase</a>
                             </div>
-                            <div class="meta-box">
-                                <h4>Verified By</h4>
-                                <p>nexifygmd</p>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-bottom: 1.5rem;">
-                            <h4 style="font-size: 0.9rem; text-transform: uppercase; color: #666; margin-bottom: 0.3rem; letter-spacing: 0.5px; font-weight: 700;">Showcase</h4>
-                            <a href="https://vt.tiktok.com/ZSXY4EgWp/" target="_blank" rel="noopener noreferrer" class="btn-video btn-tiktok">Watch TikTok Showcase</a>
-                        </div>
 
-                        <div class="records-box">
-                            <h4>Records</h4>
-                            <div class="no-records">
-                                No records submitted yet. Submit your proof in our Discord server!
+                            <div class="records-box">
+                                <h4>Records</h4>
+                                <div class="no-records">
+                                    No records submitted yet. Submit your proof in our Discord server!
+                                </div>
                             </div>
                         </div>
                     </div>
-                </details>
+                </div>
 
             </section>
 
@@ -522,43 +591,48 @@
             <section id="contentImpossible" class="level-list hidden">
                 
                 <!-- LEVEL #1: UNNERFED SINE WAVS -->
-                <details class="level-card-wrapper" data-name="unnerfed sine wavs" data-creator="radiumchan">
-                    <summary class="level-card-summary">
+                <div class="level-card-wrapper sine-card-theme" data-name="unnerfed sine wavs" data-creator="radiumchan">
+                    <div class="summary-header" onclick="toggleCard(this)">
                         <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783864353/i.ytimg_1_yl7a1s.png" alt="Unnerfed Sine Wavs Preview">
                         
                         <div class="level-info">
-                            <div class="level-title">#1 — Unnerfed Sine Wavs</div>
-                            <div class="level-publisher">by <strong>RadiumChan</strong></div>
-                            <div class="tag-container">
-                                <span class="tag tag-impossible">Impossible</span>
+                            <div class="level-main-meta">
+                                <div class="level-title">#1 — Unnerfed Sine Wavs</div>
+                                <div class="level-publisher">by <strong>RadiumChan</strong></div>
+                                <div class="tag-container">
+                                    <span class="tag tag-impossible">Impossible</span>
+                                </div>
                             </div>
+                            <div class="dropdown-arrow">▼</div>
                         </div>
-                    </summary>
+                    </div>
 
                     <div class="level-expanded-content">
-                        <div class="meta-grid">
-                            <div class="meta-box">
-                                <h4>Level ID</h4>
-                                <p>144339100</p>
+                        <div class="expanded-inner-body">
+                            <div class="meta-grid">
+                                <div class="meta-box">
+                                    <h4>Level ID</h4>
+                                    <p>144339100</p>
+                                </div>
+                                <div class="meta-box">
+                                    <h4>Creators</h4>
+                                    <p>RadiumChan</p>
+                                </div>
+                                <div class="meta-box">
+                                    <h4>Showcase</h4>
+                                    <p><a href="https://www.youtube.com/watch?v=t2bmymS9nho" target="_blank" rel="noopener noreferrer" class="btn-video">Watch Showcase</a></p>
+                                </div>
                             </div>
-                            <div class="meta-box">
-                                <h4>Creators</h4>
-                                <p>RadiumChan</p>
-                            </div>
-                            <div class="meta-box">
-                                <h4>Showcase</h4>
-                                <a href="https://www.youtube.com/watch?v=t2bmymS9nho" target="_blank" rel="noopener noreferrer" class="btn-video">Watch Showcase</a>
-                            </div>
-                        </div>
 
-                        <div class="records-box">
-                            <h4>Records</h4>
-                            <div class="no-records">
-                                No records submitted yet. Submit your proof in our Discord server!
+                            <div class="records-box">
+                                <h4>Records</h4>
+                                <div class="no-records">
+                                    No records submitted yet. Submit your proof in our Discord server!
+                                </div>
                             </div>
                         </div>
                     </div>
-                </details>
+                </div>
 
             </section>
 
@@ -571,9 +645,22 @@
         </main>
     </div>
 
-    <!-- JAVASCRIPT FOR TABS AND LIVE FILTER SEARCH -->
     <script>
-        // HANDLE TAB SWITCHING
+        function toggleCard(headerElement) {
+            const cardWrapper = headerElement.parentElement;
+            const contentPanel = cardWrapper.querySelector('.level-expanded-content');
+            
+            const isOpen = cardWrapper.classList.contains('is-open');
+            
+            if (!isOpen) {
+                cardWrapper.classList.add('is-open');
+                contentPanel.style.height = contentPanel.scrollHeight + "px";
+            } else {
+                cardWrapper.classList.remove('is-open');
+                contentPanel.style.height = "0px";
+            }
+        }
+
         function switchTab(type) {
             const tabs = {
                 main: { tab: 'tabMain', content: 'contentMain' },
@@ -581,9 +668,13 @@
                 layout: { tab: 'tabLayout', content: 'contentLayout' }
             };
 
-            // Reset search box when switching lists
             document.getElementById('listSearch').value = "";
             filterLevels();
+
+            document.querySelectorAll('.level-card-wrapper').forEach(card => {
+                card.classList.remove('is-open');
+                card.querySelector('.level-expanded-content').style.height = "0px";
+            });
 
             for (let key in tabs) {
                 const tabEl = document.getElementById(tabs[key].tab);
@@ -592,14 +683,17 @@
                 if (key === type) {
                     tabEl.classList.add('active');
                     contentEl.classList.remove('hidden');
+                    contentEl.classList.remove('tab-animate');
+                    void contentEl.offsetWidth; 
+                    contentEl.classList.add('tab-animate');
                 } else {
                     tabEl.classList.remove('active');
                     contentEl.classList.add('hidden');
+                    contentEl.classList.remove('tab-animate');
                 }
             }
         }
 
-        // REAL-TIME LEVEL SEARCH FILTER
         function filterLevels() {
             const filterValue = document.getElementById('listSearch').value.toLowerCase();
             const cards = document.querySelectorAll('.level-card-wrapper');
