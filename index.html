@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mctify Community List</title>
     
-    
     <style>
         /* GLOBAL STYLES */
         * {
@@ -44,6 +43,7 @@
             color: #ffffff;
         }
 
+        /* Blue color applied to COMMUNITY LIST */
         .logo-area span {
             color: #4a90e2;
         }
@@ -66,6 +66,22 @@
 
         .nav-links a:hover {
             color: #ffffff;
+        }
+
+        /* ANIMATION DEFINITION */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* APPLY ANIMATION TO ALL CARDS */
+        .level-card-wrapper {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            background: #16181d;
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 24px; 
+            overflow: hidden;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s;
         }
 
         /* SEARCH BAR SYSTEM */
@@ -143,25 +159,7 @@
             margin-bottom: 4rem;
         }
 
-        .tab-animate {
-            animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .hidden { display: none !important; }
-
-        /* ACCORDION CARD WRAPPER */
-        .level-card-wrapper {
-            background: #16181d;
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            border-radius: 24px; 
-            overflow: hidden;
-            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s;
-        }
 
         .level-card-wrapper:hover {
             transform: translateY(-2px);
@@ -304,6 +302,7 @@
 <body>
     <div class="container">
         <header>
+            <!-- Title with blue span -->
             <div class="logo-area">MCTIFY <span>COMMUNITY LIST</span></div>
             <ul class="nav-links">
                 <li><a href="https://discord.gg/ABn3XnUhyH" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
@@ -322,7 +321,7 @@
         </div>
 
         <main>
-            <section id="contentMain" class="level-list tab-animate">
+            <section id="contentMain" class="level-list">
                 <!-- CARD 1 -->
                 <div class="level-card-wrapper banana-card-theme" data-name="banana circles" data-creator="nexifygmd">
                     <div class="summary-header" onclick="toggleCard(this)">
