@@ -16,7 +16,6 @@
         .logo-area { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px; color: #ffffff; display: flex; align-items: center; gap: 1rem; }
         .logo-area span { color: #4a90e2; }
         
-        /* UPDATED BUTTON STYLE */
         .btn-silent { 
             background-color: #1a1c22; 
             color: #ffffff; 
@@ -74,6 +73,7 @@
         .no-records { background: rgba(22, 24, 29, 0.6); border: 1px dashed rgba(255, 255, 255, 0.15); padding: 1rem; text-align: center; color: #b0b3b8; border-radius: 4px; font-style: italic; }
 
         /* THEMES */
+        .cloudy-card-theme .summary-header { background: linear-gradient(to right, #16181d 40%, rgba(22,24,29,0.6) 100%), url('https://res.cloudinary.com/ddows9h3k/image/upload/v1784263215/Screenshot_2026-07-17_112917_yw05gr.png'); background-size: cover; }
         .banana-card-theme .summary-header { background: linear-gradient(to right, #16181d 40%, rgba(22,24,29,0.6) 100%), url('https://res.cloudinary.com/ddows9h3k/image/upload/v1783916158/Screenshot_2026-07-13_111249_t8nqxe.png'); background-size: cover; }
         .shadowy-card-theme .summary-header { background: linear-gradient(to right, #16181d 40%, rgba(22,24,29,0.6) 100%), url('https://res.cloudinary.com/ddows9h3k/image/upload/v1783917195/Screenshot_2026-07-13_113223_iuj1ij.png'); background-size: cover; }
         .xcct-card-theme .summary-header { background: linear-gradient(to right, #16181d 40%, rgba(22,24,29,0.6) 100%), url('https://res.cloudinary.com/ddows9h3k/image/upload/v1783917510/Screenshot_2026-07-13_113803_uf6nze.png'); background-size: cover; }
@@ -96,13 +96,43 @@
         </div>
 
         <main id="contentMain">
-            <!-- CARD 1 -->
+            <!-- #1 Cloudy Haze -->
+            <div class="level-card-wrapper cloudy-card-theme" data-name="cloudy haze" data-creator="extrahotsauce">
+                <div class="summary-header" onclick="toggleCard(this)">
+                    <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1784263173/i.ytimg_2_pbgguf.png">
+                    <div class="level-info">
+                        <div>
+                            <div class="level-title">#1 — Cloudy Haze</div>
+                            <div class="level-publisher">by <strong>extrahotsauce</strong></div>
+                            <div class="level-verifier">Verified by <span>extrahotsauce</span></div>
+                        </div>
+                        <div class="dropdown-arrow">▼</div>
+                    </div>
+                </div>
+                <div class="level-expanded-content">
+                    <div class="expanded-inner-body">
+                        <div class="meta-grid">
+                            <div class="meta-box"><h4>ID</h4><p>144366482</p></div>
+                            <div class="meta-box"><h4>Creators</h4><p>extrahotsauce</p></div>
+                            <div class="meta-box"><h4>Verifier</h4><p>extrahotsauce</p></div>
+                        </div>
+                        <h4>Showcase</h4>
+                        <a href="https://youtu.be/u66qmaYVBW8?si=XiWHbK2rBDaBGjgM" target="_blank" class="btn-video">Watch Showcase</a>
+                        <div class="records-box">
+                            <h4>Records</h4>
+                            <div class="no-records">No records submitted yet. Submit your proof in our Discord server!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #2 Banana Circles -->
             <div class="level-card-wrapper banana-card-theme" data-name="banana circles" data-creator="nexifygmd">
                 <div class="summary-header" onclick="toggleCard(this)">
                     <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783865345/Screenshot_2026-07-12-20-49-34-22_94c3c0214f41e8559bec03caf75c21c7_tjknqk.png">
                     <div class="level-info">
                         <div>
-                            <div class="level-title">#1 — Banana Circles</div>
+                            <div class="level-title">#2 — Banana Circles</div>
                             <div class="level-publisher">by <strong>nexifygmd</strong></div>
                             <div class="level-verifier">Verified by <span>zugur</span></div>
                         </div>
@@ -126,13 +156,13 @@
                 </div>
             </div>
 
-            <!-- CARD 2 -->
+            <!-- #3 Shadowy -->
             <div class="level-card-wrapper shadowy-card-theme" data-name="shadowy" data-creator="syhptr">
                 <div class="summary-header" onclick="toggleCard(this)">
                     <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783857978/i.ytimg_lnaopr.png">
                     <div class="level-info">
                         <div>
-                            <div class="level-title">#2 — Shadowy</div>
+                            <div class="level-title">#3 — Shadowy</div>
                             <div class="level-publisher">by <strong>Syhptr</strong></div>
                             <div class="level-verifier">Verified by <span>Syhptr</span></div>
                         </div>
@@ -156,13 +186,13 @@
                 </div>
             </div>
 
-            <!-- CARD 3 -->
+            <!-- #4 Xcct -->
             <div class="level-card-wrapper xcct-card-theme" data-name="xcct" data-creator="nexifygmd">
                 <div class="summary-header" onclick="toggleCard(this)">
                     <img class="level-thumb" src="https://res.cloudinary.com/ddows9h3k/image/upload/v1783904123/Screenshot_2026-07-13-06-42-25-08_73932565f5d18c5d7f2b58eb6d5de17f_weoyfa.png">
                     <div class="level-info">
                         <div>
-                            <div class="level-title">#3 — Xcct</div>
+                            <div class="level-title">#4 — Xcct</div>
                             <div class="level-publisher">by <strong>nexifygmd</strong></div>
                             <div class="level-verifier">Verified by <span>nexifygmd</span></div>
                         </div>
